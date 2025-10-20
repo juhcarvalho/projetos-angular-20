@@ -1,0 +1,24 @@
+<div class="lista-tarefas">
+  <h2>Lista de Tarefas</h2>
+
+  <div class="nova-tarefa">
+    <input
+      type="text"
+      placeholder="Digite uma nova tarefa"
+      [ngModel]="tituloNovaTarefa()"
+      (ngModelChange)="tituloNovaTarefa.set($event)"
+    />
+    <button (click)="adicionarTarefa()">Adicionar</button>
+  </div>
+
+  <p>Tarefas pendentes: {{ tarefasPendentes() }}</p>
+
+  <div class="tarefas">
+    @for (tarefa of tarefas(); track tarefa.id) {
+      <app-tarefa
+        [tarefa]="tarefa"
+        (tarefaAtualizada)="atualizarTarefa($event)"
+      ></app-tarefa>
+    }
+  </div>
+</div>

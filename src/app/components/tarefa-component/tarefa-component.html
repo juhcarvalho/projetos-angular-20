@@ -1,0 +1,6 @@
+<div class="tarefa" [class.concluida]="tarefa.concluida">
+  <span>{{ tarefa.nome }}</span>
+  <button (click)="marcarComoConcluida()" [disabled]="tarefa.concluida">
+    Concluir
+  </button>
+</div>
