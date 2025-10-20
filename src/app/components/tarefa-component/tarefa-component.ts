@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, effect, EventEmitter, Input, Output, signal } from '@angular/core';
 import { Tarefa } from '../../models/tarefa.model';
 
 @Component({
@@ -9,12 +9,27 @@ import { Tarefa } from '../../models/tarefa.model';
   styleUrl: './tarefa-component.scss'
 })
 export class TarefaComponent {
-  @Input() tarefa!: Tarefa;
+
+  private _tarefa = signal<Tarefa>({ id: 0, nome: '', descricao: '', concluida: false });
+
+  @Input() set tarefa(value: Tarefa) {
+    this._tarefa.set(value);
+  }
+
+  get tarefa(): Tarefa {
+    return this._tarefa();
+  }
+  
   @Output() tarefaAtualizada = new EventEmitter<Tarefa>();
 
   marcarComoConcluida() {
-    const tarefaAtualizada = { ...this.tarefa, concluida: true };
-    this.tarefaAtualizada.emit(tarefaAtualizada);
+    this._tarefa.update(t => ({ ...t, concluida: true }));
+    this.tarefaAtualizada.emit(this._tarefa());
+  }
+
+  reativarTarefa() {
+    this._tarefa.update(t => ({ ...t, concluida: false }));
+    this.tarefaAtualizada.emit(this._tarefa());
   }
 
 }

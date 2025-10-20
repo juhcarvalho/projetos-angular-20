@@ -3,4 +3,7 @@
   <button (click)="marcarComoConcluida()" [disabled]="tarefa.concluida">
     Concluir
   </button>
+  <button (click)="reativarTarefa()" [disabled]="!tarefa.concluida">
+    Refazer
+  </button>
 </div>
