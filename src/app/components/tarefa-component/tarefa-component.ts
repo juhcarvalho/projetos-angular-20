@@ -10,7 +10,7 @@ import { Tarefa } from '../../models/tarefa.model';
 })
 export class TarefaComponent {
 
-  private _tarefa = signal<Tarefa>({ id: 0, nome: '', descricao: '', concluida: false });
+  private _tarefa = signal<Tarefa>({ id: 0, nome: '', concluida: false });
 
   @Input() set tarefa(value: Tarefa) {
     this._tarefa.set(value);

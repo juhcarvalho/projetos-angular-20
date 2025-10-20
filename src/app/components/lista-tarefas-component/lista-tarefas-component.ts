@@ -12,9 +12,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class ListaTarefasComponent {
   tarefas = signal<Tarefa[]>([
-    { id: 1, nome: 'Tarefa 1', descricao: 'Descrição da Tarefa 1', concluida: false },
-    { id: 2, nome: 'Tarefa 2', descricao: 'Descrição da Tarefa 2', concluida: true },
-    { id: 3, nome: 'Tarefa 3', descricao: 'Descrição da Tarefa 3', concluida: false }
+    { id: 1, nome: 'Estudar Java',concluida: false },
+    { id: 2, nome: 'Estudar C#', concluida: false },
+    { id: 3, nome: 'Revisar conteúdo', concluida: true }
   ]);
 
 
@@ -30,7 +30,6 @@ export class ListaTarefasComponent {
       const novaTarefa: Tarefa = {
         id: Date.now(),
         nome: titulo,
-        descricao: titulo,
         concluida: false
       };
       this.tarefas.update(lista => [...lista, novaTarefa]);
